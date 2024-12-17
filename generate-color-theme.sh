@@ -8,14 +8,14 @@ UNDERLINE='\033[3;4m'
 RESET='\033[0m'
 
 printf $BLUE
-printf ' ............................................................................. \n'; sleep 0.1
-printf ' . ___________ __          __    __________                __                . \n'; sleep 0.1
-printf ' . \_   _____/|  | _____ _/  |_  \______   \ ____   _____ |__|_   __    _    . \n'; sleep 0.1
-printf ' .  |    __)  |  | \__  \\   __\  |       _// __ \ /     \|  \  \/ /  _|_|_  . \n'; sleep 0.1
-printf ' .  |    \   |  |__/ __ \|  |    |    |   \| ____/|  Y_Y  \   |   |  [_|_|_] . \n'; sleep 0.1
-printf ' .  \___  |  |____(____  /__|   |____(____ /\____\|  |_|  /__/ /\_\    |_|   . \n'; sleep 0.1
-printf ' .      \/              \/               \/     \/ \/   \/   \/  \/          . \n'; sleep 0.1
-printf ' ............................................................................. \n'; sleep 0.1
+printf ' .......................................................................... \n'; sleep 0.1
+printf ' . __________ ___           _   _______                   _               . \n'; sleep 0.1
+printf ' . \_   ____/ \ |  _____  _| |_(   __  )  _____   _____  (_) _  _    _    . \n'; sleep 0.1
+printf ' .  |  ____)  | |  \__  ||_   _|)   _ (  /  __ ) /  _  \ | |\ \/ / _|_|_  . \n'; sleep 0.1
+printf ' .  |   \     | |  / __  \ | | /  | \  \(   ___)( |\ /| )| | )  (_[_|_|_] . \n'; sleep 0.1
+printf ' .  \____)   [___](______/ |_| \__|  \__\\____ > \| V |/ |_\/_/\_\  |_|   . \n'; sleep 0.1
+printf ' .                                                                        . \n'; sleep 0.1
+printf ' .......................................................................... \n'; sleep 0.1
 printf $RESET
 
 if [ $# -lt 3 ]
@@ -26,15 +26,27 @@ then
   EXIT=1
 fi
 
-command -v make > /dev/null \
-  || { printf "   ${RED} !! YOU NEED TO INSTALL ${RESET}make\n"; EXIT=1; }
-command -v inkscape > /dev/null \
-  || { printf "   ${RED} !! YOU NEED TO INSTALL ${RESET}inkscape\n"; EXIT=1; }
-command -v sassc > /dev/null \
-  || { printf "   ${RED} !! YOU NEED TO INSTALL ${RESET}sassc\n"; EXIT=1; }
+check_dependencies() {
+    local missing=0
+    local -a deps=(make inkscape sassc)
 
-command -v optipng > /dev/null \
-  || printf "   ${ORANGE} !! OPTIONALLY INSTALL optipng for assets minification${RESET}"
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" > /dev/null; then
+            printf "   ${RED} !! YOU NEED TO INSTALL ${RESET}$dep\n"
+            missing=1
+        fi
+    done
+
+    if ! command -v optipng > /dev/null; then
+        printf "   ${ORANGE} !! OPTIONALLY INSTALL optipng for assets minification${RESET}\n"
+    fi
+
+    if [ $missing -eq 1 ]; then
+        EXIT=1
+    fi
+}
+
+check_dependencies
 
 [ -z $EXIT ] || exit 1
 

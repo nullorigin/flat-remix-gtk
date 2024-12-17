@@ -5,13 +5,12 @@ GTK_THEMES=$(patsubst $(THEMES_DIR)%,%,$(wildcard $(THEMES_DIR)Flat-Remix-GTK*))
 IGNORE=$(patsubst $(THEMES_DIR)%,%,$(wildcard $(THEMES_DIR)Flat-Remix-GTK-*XFWM*) $(wildcard $(THEMES_DIR)Flat-Remix-GTK-*GNOME*))
 GTK_THEMES:=$(filter-out $(IGNORE),$(GTK_THEMES))
 
-
 THEME_INDEX_TEMPLATE=index.theme
 STATIC_TEMPLATE_DIR=static/
 
-.PHONY: build $(GTK_THEMES) $(COLOR_VARIANTS) clean
+.PHONY: build clean
 
-build: $(GTK_THEMES) $(COLOR_VARIANTS)
+build: $(GTK_THEMES)
 	# XFWM4
 	cp themerc-light $(THEMES_DIR)Flat-Remix-Light-XFWM/xfwm4/themerc
 	cp themerc-light-HiDPI $(THEMES_DIR)Flat-Remix-Light-XFWM-HiDPI/xfwm4/themerc
@@ -34,25 +33,14 @@ build: $(GTK_THEMES) $(COLOR_VARIANTS)
 	ln -rsvf $(THEMES_DIR)Flat-Remix-Darkest-Metacity/metacity-1/metacity-theme-1.xml $(THEMES_DIR)Flat-Remix-Darkest-Metacity/metacity-1/metacity-theme-3.xml
 
 $(GTK_THEMES):
-	sed -e 's/Name=/Name=$@/' \
-	    -e 's/Comment=/Comment=$@ theme"/' \
-	    -e 's/GtkTheme=/GtkTheme=$@/' \
-	    -e 's/MetacityTheme=/MetacityTheme=Flat-Remix-'$$(echo $@ | grep -oE 'Light|Dark(est)?')-Metacity/ \
-	    -e 's/IconTheme=/IconTheme='$$(echo $@ | sed 's/-GTK//')/ \
-	    $(THEME_INDEX_TEMPLATE) > $(THEMES_DIR)$@/index.theme
-	cp -r $(STATIC_TEMPLATE_DIR)* $(THEMES_DIR)$@
-	cp install.sh $(THEMES_DIR)$@
-	sed -e 's/theme=/theme=$@/' uninstall.sh > $(THEMES_DIR)$@/uninstall.sh
-	chmod +x $(THEMES_DIR)$@/*.sh
-
-$(COLOR_VARIANTS):
-	# GTK2
-	sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$@)/gi' \
-	    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$@)/' \
-	    gtkrc-light > $(THEMES_DIR)Flat-Remix-GTK-$@-Light/gtk-2.0/gtkrc
-	sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$@)/gi' \
-	    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$@)/' \
-	    gtkrc-dark > $(THEMES_DIR)Flat-Remix-GTK-$@-Dark/gtk-2.0/gtkrc
-	sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$@)/gi' \
-	    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$@)/' \
-	    gtkrc-darkest > $(THEMES_DIR)Flat-Remix-GTK-$@-Darkest/gtk-2.0/gtkrc
+	$(foreach color_variant,$(COLOR_VARIANTS), \
+		sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$(color_variant))/gi' \
+		    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$(color_variant))/g' \
+		    gtkrc-light > $(THEMES_DIR)Flat-Remix-GTK-$(color_variant)-Light/gtk-2.0/gtkrc; \
+		sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$(color_variant))/gi' \
+		    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$(color_variant))/g' \
+		    gtkrc-dark > $(THEMES_DIR)Flat-Remix-GTK-$(color_variant)-Dark/gtk-2.0/gtkrc; \
+		sed -e 's/$(DEFAULT_THEME_COLOR)/$(COLOR_$(color_variant))/gi' \
+		    -e 's/selected_fg_color:/selected_fg_color: $(TEXT_COLOR_$(color_variant))/g' \
+		    gtkrc-darkest > $(THEMES_DIR)Flat-Remix-GTK-$(color_variant)-Darkest/gtk-2.0/gtkrc; \
+	)
