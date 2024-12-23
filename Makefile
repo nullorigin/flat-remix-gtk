@@ -45,21 +45,6 @@ release: _get_version
 	git push origin --tags
 	$(MAKE) dist
 
-aur_release: _get_version
-	cd aur; \
-	sed "s/pkgver=.*/pkgver=$(VERSION)/" -i PKGBUILD; \
-	sed "s/pkgver =.*/pkgver = $(VERSION)/" -i .SRCINFO; \
-	git commit -a -m "$(VERSION)"; \
-	git push origin master;
-
-	git commit aur -m "Update aur version $(VERSION)"
-	git push origin master
-
-copr_release: _get_version
-	sed "/Version:/c Version: $(VERSION)" -i $(PKGNAME).spec
-	git commit $(PKGNAME).spec -m "Update $(PKGNAME).spec version $(VERSION)"
-	git push origin master
-
 launchpad_release: _get_version
 	rm -rf /tmp/$(PKGNAME)
 	mkdir -p /tmp/$(PKGNAME)/$(PKGNAME)_$(VERSION)
@@ -74,6 +59,7 @@ launchpad_release: _get_version
 	dput ppa:daniruiz/flat-remix /tmp/$(PKGNAME)/$(PKGNAME)_$(VERSION)_source.changes
 
 generate_changelog: _get_version _get_tag
+ifneq ("$(TAG)",)
 	git checkout $(TAG) CHANGELOG
 	mv CHANGELOG CHANGELOG.old
 	echo [$(VERSION)] > CHANGELOG
@@ -83,8 +69,10 @@ generate_changelog: _get_version _get_tag
 	$$EDITOR CHANGELOG
 	git commit CHANGELOG -m "Update CHANGELOG version $(VERSION)"
 	git push origin HEAD
-
+else
+	@echo "No git tag found, skipping generate_changelog"
+endif
 clean:
 	-make -C src clean
 
-.PHONY: all build build-sass install uninstall _get_version _get_tag dist release aur_release copr_release launchpad_release generate_changelog clean
+.PHONY: all build build-sass install uninstall _get_version _get_tag dist release launchpad_release generate_changelog clean
