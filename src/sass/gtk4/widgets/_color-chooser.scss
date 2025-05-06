@@ -14,7 +14,7 @@ colorswatch {
     border-top-left-radius: $button_radius + 0.5px;
     border-top-right-radius: $button_radius + 0.5px;
 
-    > overlay {
+    >overlay {
       border-top-left-radius: $button_radius;
       border-top-right-radius: $button_radius;
     }
@@ -24,7 +24,7 @@ colorswatch {
     border-bottom-left-radius: $button_radius + 0.5px;
     border-bottom-right-radius: $button_radius + 0.5px;
 
-    > overlay {
+    >overlay {
       border-bottom-left-radius: $button_radius;
       border-bottom-right-radius: $button_radius;
     }
@@ -35,7 +35,7 @@ colorswatch {
     border-top-left-radius: $button_radius + 0.5px;
     border-bottom-left-radius: $button_radius + 0.5px;
 
-    > overlay {
+    >overlay {
       border-top-left-radius: $button_radius;
       border-bottom-left-radius: $button_radius;
     }
@@ -46,48 +46,50 @@ colorswatch {
     border-top-right-radius: $button_radius + 0.5px;
     border-bottom-right-radius: $button_radius + 0.5px;
 
-    > overlay {
+    >overlay {
       border-top-right-radius: $button_radius;
       border-bottom-right-radius: $button_radius;
     }
   }
 
-  @if $contrast == 'high' {
-    > overlay {
+  @if $contrast =='high' {
+    >overlay {
       box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--view-fg-color) 50%, transparent);
     }
   }
 
-  &.dark > overlay {
+  &.dark>overlay {
     color: white;
   }
 
-  &.light > overlay {
+  &.light>overlay {
     color: RGB(0 0 6 / 75%);
 
-    @if $contrast != 'high' {
+    @if $contrast !='high' {
       box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--view-fg-color) 10%, transparent);
     }
   }
 
   &:drop(active) {
-    &.light > overlay {
+    &.light>overlay {
       box-shadow: inset 0 0 0 2px $drop_target_color;
     }
 
-    &.dark > overlay {
+    &.dark>overlay {
       box-shadow: inset 0 0 0 2px $drop_target_color;
     }
   }
 
   &#add-color-button {
-    > overlay {
+    >overlay {
       @extend %button_basic;
 
       border-radius: $button_radius 0 0 $button_radius;
     }
 
-    &:only-child > overlay { border-radius: $button_radius; }
+    &:only-child>overlay {
+      border-radius: $button_radius;
+    }
   }
 
   &:disabled {
@@ -97,7 +99,9 @@ colorswatch {
   &#editor-color-sample {
     border-radius: $button_radius;
 
-    > overlay { border-radius: $button_radius + 0.5px; }
+    >overlay {
+      border-radius: $button_radius + 0.5px;
+    }
   }
 }
 
@@ -106,4 +110,6 @@ plane {
 }
 
 // colorscale popup
-colorchooser .popover.osd { border-radius: $popover_radius; }
+colorchooser .popover.osd {
+  border-radius: $popover_radius;
+}

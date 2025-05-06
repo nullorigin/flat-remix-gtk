@@ -1,5 +1,5 @@
 paned {
-  > separator {
+  >separator {
     min-width: 1px;
     min-height: 1px;
     background: none;
@@ -11,26 +11,27 @@ paned {
     }
   }
 
-  &.horizontal > separator {
+  &.horizontal>separator {
     &:dir(ltr) {
       box-shadow: inset 1px 0 $border_color;
     }
+
     &:dir(rtl) {
       box-shadow: inset -1px 0 $border_color;
     }
 
     &.wide {
-      box-shadow: inset  1px 0 $border_color,
-                  inset -1px 0 $border_color;
+      box-shadow: inset 1px 0 $border_color,
+        inset -1px 0 $border_color;
     }
   }
 
-  &.vertical > separator {
+  &.vertical>separator {
     box-shadow: inset 0 1px $border_color;
 
     &.wide {
-      box-shadow: inset 0  1px $border_color,
-                  inset 0 -1px $border_color;
+      box-shadow: inset 0 1px $border_color,
+        inset 0 -1px $border_color;
     }
   }
 }

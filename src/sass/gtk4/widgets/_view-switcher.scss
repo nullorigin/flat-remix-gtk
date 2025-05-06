@@ -11,12 +11,12 @@ viewswitcher {
   button.toggle {
     padding: 0;
 
-    > stack > box {
+    >stack>box {
       &.narrow {
         font-size: 0.75rem;
         padding-top: 4px;
 
-        > label {
+        >label {
           min-height: 18px;
           padding-left: 3px;
           padding-right: 3px;
@@ -36,13 +36,13 @@ viewswitcher {
  * AdwViewSwitcherBar *
  **********************/
 
-viewswitcherbar actionbar > revealer > box {
+viewswitcherbar actionbar>revealer>box {
   padding-left: 0;
   padding-right: 0;
   padding-top: 7px;
 }
 
-%viewswitcherbar-shrunk actionbar > revealer > box {
+%viewswitcherbar-shrunk actionbar>revealer>box {
   // Not 0px because view switcher has negative margin
   padding-top: 6px;
 }
@@ -81,33 +81,36 @@ viewswitchertitle {
  *******************/
 
 indicatorbin {
-  > indicator, > mask {
+
+  >indicator,
+  >mask {
     min-width: 6px;
     min-height: 6px;
     border-radius: 100px;
   }
 
-  > indicator {
+  >indicator {
     margin: 1px;
     background: color-mix(in srgb, currentColor 40%, transparent);
   }
 
-  > mask {
+  >mask {
     padding: 1px;
     background: black;
   }
 
-  &.needs-attention > indicator {
+  &.needs-attention>indicator {
     background: var(--accent-color);
   }
 
   &.badge {
-    > indicator,
-    > mask {
+
+    >indicator,
+    >mask {
       min-height: 13px;
     }
 
-    > indicator > label {
+    >indicator>label {
       font-size: 0.6rem;
       font-weight: bold;
       padding-left: 4px;
@@ -115,10 +118,12 @@ indicatorbin {
       color: white;
     }
 
-    &.needs-attention > indicator {
+    &.needs-attention>indicator {
       background: var(--accent-bg-color);
 
-      > label { color: var(--accent-fg-color); }
+      >label {
+        color: var(--accent-fg-color);
+      }
     }
   }
 }

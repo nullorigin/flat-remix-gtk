@@ -28,7 +28,7 @@ button {
     @at-root %button_basic_raised, & {
       background-color: $button_color;
 
-      @if $contrast == 'high' {
+      @if $contrast =='high' {
         box-shadow: inset 0 0 0 1px $border_color;
       }
 
@@ -79,11 +79,11 @@ button {
       padding-left: 9px;
       padding-right: 9px;
 
-      > box,
-      > box > box {
+      >box,
+      >box>box {
         border-spacing: 4px;
 
-        > label {
+        >label {
           padding-left: 2px;
           padding-right: 2px;
         }
@@ -94,10 +94,14 @@ button {
       padding-left: 9px;
       padding-right: 9px;
 
-      > box { border-spacing: 4px; }
+      >box {
+        border-spacing: 4px;
+      }
 
       &.text-button {
-        > box { border-spacing: 4px; }
+        >box {
+          border-spacing: 4px;
+        }
       }
     }
 
@@ -118,7 +122,7 @@ button {
     color: $osd_fg_color;
     background-color: RGB(0 0 0 / 65%);
 
-    @if $contrast == 'high' {
+    @if $contrast =='high' {
       box-shadow: 0 0 0 1px currentColor;
     }
 
@@ -192,7 +196,8 @@ button {
       background-color: $destructive_button_hover_color;
     }
 
-    &:active, &.keyboard-activating {
+    &:active,
+    &.keyboard-activating {
       background-color: $destructive_button_active_color;
     }
 
@@ -222,7 +227,8 @@ button {
 
     color: var(--accent-fg-color);
 
-    &, &:checked {
+    &,
+    &:checked {
       background-color: var(--accent-bg-color);
     }
   }
@@ -238,7 +244,8 @@ button {
 
     box-shadow: none;
 
-    @if $contrast == 'high' {
+    @if $contrast =='high' {
+
       &:hover,
       &.keyboard-activating,
       &:active,
@@ -279,44 +286,60 @@ button {
     }
   }
 
-  stackswitcher > & {
+  stackswitcher>& {
     // to position the needs attention dot, padding is added to the button
     // child, a label needs just lateral padding while an icon needs vertical
     // padding added too.
 
-    > label {
+    >label {
       padding: 0 6px;
       margin: 0 -6px;
     }
 
-    > image {
+    >image {
       padding: 3px 6px;
       margin: -3px -6px;
     }
 
-    &.text-button { min-width: 100px; }
+    &.text-button {
+      min-width: 100px;
+    }
 
     &.needs-attention {
-      > label,
-      > image { @extend %needs_attention; }
+
+      >label,
+      >image {
+        @extend %needs_attention;
+      }
     }
   }
 
   // hide separators
   &.font {
-    separator { background-color: transparent; }
-    > box { border-spacing: 6px; }
-    > box > box > label { font-weight: bold; }
+    separator {
+      background-color: transparent;
+    }
+
+    >box {
+      border-spacing: 6px;
+    }
+
+    >box>box>label {
+      font-weight: bold;
+    }
   }
 
   @at-root %circular_button,
-  &.circular { // force circular button shape
+  &.circular {
+    // force circular button shape
     min-width: 34px;
     min-height: 34px;
     padding: 0;
     border-radius: 9999px;
 
-    label { padding: 0; }
+    label {
+      padding: 0;
+    }
   }
 
   @at-root %pill_button,
@@ -346,12 +369,18 @@ button {
       background-color: var(--card-bg-color);
       background-image: image($view_selected_color);
 
-      &:hover { background-image: image($view_selected_hover_color); }
+      &:hover {
+        background-image: image($view_selected_hover_color);
+      }
 
       &.keyboard-activating,
-      &:active { background-image: image($view_selected_active_color); }
+      &:active {
+        background-image: image($view_selected_active_color);
+      }
 
-      &.has-open-popup { background-image: image($view_selected_hover_color); }
+      &.has-open-popup {
+        background-image: image($view_selected_hover_color);
+      }
 
       .osd & {
         background-color: color-mix(in srgb, currentColor 10%, transparent);
@@ -368,10 +397,10 @@ button {
 button.color {
   padding: 5px;
 
-  > colorswatch:only-child {
+  >colorswatch:only-child {
     border-radius: $button_radius - 4.5px;
 
-    > overlay {
+    >overlay {
       border-radius: $button_radius - 5px;
     }
 
@@ -379,7 +408,7 @@ button.color {
       filter: none;
     }
 
-    &.light > overlay {
+    &.light>overlay {
       border-color: color-mix(in srgb, var(--view-fg-color) 10%, transparent);
     }
   }
@@ -390,21 +419,34 @@ menubutton {
     background: none;
     color: inherit;
 
-    > button { @extend %osd_button; }
+    >button {
+      @extend %osd_button;
+    }
   }
 
   &:disabled {
     filter: opacity($disabled_opacity);
   }
 
-  > button:disabled:not(:checked) {
+  >button:disabled:not(:checked) {
     filter: none;
   }
 
-  &.circular > button { @extend %circular_button; }
-  &.flat > button { @extend %button_basic_flat; }
-  &.pill > button { @extend %pill_button; }
-  &.destructive-action > button { @extend %destructive_button; }
+  &.circular>button {
+    @extend %circular_button;
+  }
+
+  &.flat>button {
+    @extend %button_basic_flat;
+  }
+
+  &.pill>button {
+    @extend %pill_button;
+  }
+
+  &.destructive-action>button {
+    @extend %destructive_button;
+  }
 
   &.flat:disabled {
     filter: none;
@@ -424,45 +466,52 @@ menubutton {
   &.opaque {
     border-radius: $button_radius;
 
-    &.circular, &.pill {
+    &.circular,
+    &.pill {
       border-radius: 9999px;
     }
 
-    > button {
+    >button {
       @extend %opaque_button;
 
-      &, &:checked {
+      &,
+      &:checked {
         background-color: transparent;
         color: inherit;
       }
     }
   }
 
-  &.image-button > button {
+  &.image-button>button {
     min-width: 24px;
     padding-left: 5px;
     padding-right: 5px;
   }
 
-  &.card > button {
+  &.card>button {
     border-radius: $card_radius;
   }
 
   arrow {
     min-height: 16px;
     min-width: 16px;
+
     &.none {
       -gtk-icon-source: -gtk-icontheme('open-menu-symbolic');
     }
+
     &.down {
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
     }
+
     &.up {
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
     }
+
     &.left {
       -gtk-icon-source: -gtk-icontheme('pan-start-symbolic');
     }
+
     &.right {
       -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
     }
@@ -472,36 +521,37 @@ menubutton {
 splitbutton {
   border-radius: $button_radius;
 
-  &, & > separator {
+  &,
+  &>separator {
     transition: $button_transition;
     transition-property: background;
   }
 
-  > separator {
+  >separator {
     margin-top: 6px;
     margin-bottom: 6px;
     background: none;
   }
 
-  > menubutton > button {
+  >menubutton>button {
     padding-left: 4px;
     padding-right: 4px;
   }
 
   // Since the inner button doesn't have any style classes on it,
   // we have to add them manually
-  &.image-button > button {
+  &.image-button>button {
     min-width: 24px;
     padding-left: 5px;
     padding-right: 5px;
   }
 
-  &.text-button.image-button > button,
-  &.image-text-button > button {
+  &.text-button.image-button>button,
+  &.image-text-button>button {
     padding-left: 9px;
     padding-right: 9px;
 
-    > box {
+    >box {
       border-spacing: 6px;
     }
   }
@@ -509,21 +559,23 @@ splitbutton {
   &:disabled {
     filter: Opacity(var(--disabled-opacity));
 
-    > button, > menubutton, > menubutton > button {
+    >button,
+    >menubutton,
+    >menubutton>button {
       filter: none;
     }
   }
 
   // Reimplementing linked so we don't blow up css
-  > button:dir(ltr),
-  > menubutton > button:dir(rtl) {
+  >button:dir(ltr),
+  >menubutton>button:dir(rtl) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -1px;
   }
 
-  > button:dir(rtl),
-  > menubutton > button:dir(ltr) {
+  >button:dir(rtl),
+  >menubutton>button:dir(ltr) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
@@ -531,7 +583,7 @@ splitbutton {
 
   @at-root %flat_split_button,
   &.flat {
-    > separator {
+    >separator {
       background: color-mix(in srgb, currentColor $dimmer_opacity, transparent);
     }
 
@@ -540,11 +592,11 @@ splitbutton {
     &:checked {
       background: $hover_color;
 
-      > separator {
+      >separator {
         background: none;
       }
 
-      @if $contrast == 'high' {
+      @if $contrast =='high' {
         box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor calc(var(--border-opacity) / 3), transparent);
       }
     }
@@ -552,17 +604,18 @@ splitbutton {
     &:disabled {
       filter: opacity($strong_disabled_opacity);
 
-      > button:disabled, > menubutton > button:disabled {
+      >button:disabled,
+      >menubutton>button:disabled {
         filter: none;
       }
     }
 
-    &:focus-within:focus-visible > separator {
+    &:focus-within:focus-visible>separator {
       background: none;
     }
 
-    > button,
-    > menubutton > button {
+    >button,
+    >menubutton>button {
       @extend %button_basic_flat;
 
       border-radius: $button_radius;
@@ -581,8 +634,8 @@ splitbutton {
 
     color: var(--accent-color);
 
-    > button,
-    > menubutton > button {
+    >button,
+    >menubutton>button {
       @extend %destructive_button;
     }
   }
@@ -594,44 +647,63 @@ splitbutton {
 
   &.suggested-action,
   &.opaque {
-    > button, > menubutton > button {
+
+    >button,
+    >menubutton>button {
       @extend %opaque_button;
 
-      &, &:checked {
+      &,
+      &:checked {
         color: inherit;
         background-color: transparent;
       }
     }
 
     $_separator_color: color-mix(in srgb, currentColor $dimmer_opacity, transparent);
-    > menubutton > button {
-      &:dir(ltr) { box-shadow: inset 1px 0 $_separator_color; }
-      &:dir(rtl) { box-shadow: inset -1px 0 $_separator_color; }
+
+    >menubutton>button {
+      &:dir(ltr) {
+        box-shadow: inset 1px 0 $_separator_color;
+      }
+
+      &:dir(rtl) {
+        box-shadow: inset -1px 0 $_separator_color;
+      }
     }
   }
 
-  > menubutton > button > arrow.none {
+  >menubutton>button>arrow.none {
     -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
   }
 }
 
 buttoncontent {
-  > box {
+  >box {
     border-spacing: 6px;
 
-    > label {
+    >label {
       font-weight: bold;
 
-      &:dir(ltr) { padding-right: 2px; }
-      &:dir(rtl) { padding-left: 2px; }
+      &:dir(ltr) {
+        padding-right: 2px;
+      }
+
+      &:dir(rtl) {
+        padding-left: 2px;
+      }
     }
   }
 
-  .arrow-button > box > &,
-  splitbutton > button > & {
-    > box > label {
-      &:dir(ltr) { padding-right: 0; }
-      &:dir(rtl) { padding-left: 0; }
+  .arrow-button>box>&,
+  splitbutton>button>& {
+    >box>label {
+      &:dir(ltr) {
+        padding-right: 0;
+      }
+
+      &:dir(rtl) {
+        padding-left: 0;
+      }
     }
   }
 }
@@ -647,9 +719,14 @@ tabbutton {
     }
   }
 
-  indicatorbin > indicator,
-  indicatorbin > mask {
-    &:dir(ltr) { transform: translate(-1px, 1px); }
-    &:dir(rtl) { transform: translate(1px, 1px); }
- }
+  indicatorbin>indicator,
+  indicatorbin>mask {
+    &:dir(ltr) {
+      transform: translate(-1px, 1px);
+    }
+
+    &:dir(rtl) {
+      transform: translate(1px, 1px);
+    }
+  }
 }

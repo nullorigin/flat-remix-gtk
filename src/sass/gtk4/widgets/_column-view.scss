@@ -9,7 +9,7 @@ columnview {
     box-shadow: none;
   }
 
-  > header > button {
+  >header>button {
     background-color: transparent;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -24,18 +24,18 @@ columnview {
       border-left-width: 0;
     }
 
-    > box {
-      color: color-mix(in srgb, currentColor if($contrast == 'high', 60%, 40%), transparent);
+    >box {
+      color: color-mix(in srgb, currentColor if($contrast =='high', 60%, 40%), transparent);
       @extend .caption-heading;
       border-spacing: 6px;
     }
 
-    &:hover > box {
-      color: color-mix(in srgb, currentColor if($contrast == 'high', 90%, 70%), transparent);
+    &:hover>box {
+      color: color-mix(in srgb, currentColor if($contrast =='high', 90%, 70%), transparent);
       box-shadow: none;
     }
 
-    &:active > box {
+    &:active>box {
       color: currentColor;
     }
 
@@ -43,6 +43,7 @@ columnview {
       &.ascending {
         -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
       }
+
       &.descending {
         -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
       }
@@ -53,8 +54,13 @@ columnview {
   }
 
   button.dnd,
-  header.button.dnd { // for treeview-like derive widgets
-    &:active, &:selected, &:hover, & {
+  header.button.dnd {
+
+    // for treeview-like derive widgets
+    &:active,
+    &:selected,
+    &:hover,
+    & {
       color: var(--accent-fg-color);
       background-color: var(--accent-bg-color);
       transition: none;
@@ -64,17 +70,17 @@ columnview {
   // Remove the default background of the internal list view
   // since we already apply a background to the column view
   // with the .view class. Doing this will avoid overdraw.
-  &.view > listview.view {
+  &.view>listview.view {
     background: none;
     color: inherit;
   }
 
   // move padding to child cells
-  > listview > row {
+  >listview>row {
     padding: 0;
 
     // align horizontal sizing with header buttons
-    > cell {
+    >cell {
       padding: 8px 6px;
 
       &:not(:first-child) {
@@ -85,19 +91,20 @@ columnview {
 
   // make column separators visible when :show-column-separators is true
   &.column-separators {
-    > listview > row > cell,
-    > header > button {
+
+    >listview>row>cell,
+    >header>button {
       border-left-color: $border_color;
     }
   }
 
-  > listview:not(.horizontal).separators > row:not(.separator) {
+  >listview:not(.horizontal).separators>row:not(.separator) {
     border-top: 1px solid $border_color;
     border-bottom: none;
   }
 
   // shrink vertically for .data-table
-  &.data-table > listview > row > cell {
+  &.data-table>listview>row>cell {
     padding-top: 2px;
     padding-bottom: 2px;
   }

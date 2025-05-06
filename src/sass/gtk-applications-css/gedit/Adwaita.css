@@ -27,11 +27,11 @@
     margin-bottom: 8px;
     min-width: 18px;
     min-height: 18px;
-    color: alpha(currentColor,0.3);
+    color: alpha(currentColor, 0.3);
 }
 
 .gedit-document-panel row:hover button.flat {
-    color: alpha(currentColor,0.5);
+    color: alpha(currentColor, 0.5);
 }
 
 .gedit-document-panel row button.flat:hover {

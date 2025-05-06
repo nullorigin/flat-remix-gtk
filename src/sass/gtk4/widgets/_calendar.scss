@@ -8,20 +8,20 @@ calendar {
     color: var(--view-fg-color);
   }
 
-  > header {
+  >header {
     border-bottom: 1px solid $border_color;
 
-    > button {
+    >button {
       @extend %button_basic_flat;
       border-radius: 0;
     }
   }
 
-  > grid {
+  >grid {
     padding-left: 3px;
     padding-bottom: 3px;
 
-    > label.today {
+    >label.today {
       box-shadow: inset 0px -2px $border_color;
 
       &:selected {
@@ -29,7 +29,7 @@ calendar {
       }
     }
 
-    > label {
+    >label {
       @include focus-ring($focus-state: ':focus');
       margin-top: 3px;
       margin-right: 3px;

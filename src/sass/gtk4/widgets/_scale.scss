@@ -5,7 +5,7 @@ $_slider_border_color: RGB(0 0 6 / #{if($contrast == 'high', 35%, 10%)});
   border-radius: 99px;
   background-color: $trough_color;
 
-  @if $contrast == "high" {
+  @if $contrast =="high" {
     box-shadow: inset 0 0 0 1px $border_color;
   }
 }
@@ -29,19 +29,21 @@ scale {
 
   @include focus-ring("> trough > slider", $offset: 0);
 
-  > trough {
+  >trough {
     @extend %scale_trough;
 
     // the colored part of the backing bit
-    > highlight { @extend %scale_highlight; }
+    >highlight {
+      @extend %scale_highlight;
+    }
 
     // this is another differently styled part of the backing bit, the most relevant use case is for example
     // in media player to indicate how much video stream as been cached
-    > fill {
+    >fill {
       @extend %scale_trough;
     }
 
-    > slider {
+    >slider {
       background-color: $slider_color;
       box-shadow: 0 0 0 1px $_slider_border_color, 0 2px 4px RGB(0 0 6 / 20%);
 
@@ -54,15 +56,16 @@ scale {
     }
   }
 
-  &:hover, &:active {
-    > trough {
+  &:hover,
+  &:active {
+    >trough {
       background-color: $trough_hover_color;
 
-      > highlight {
+      >highlight {
         background-image: image(color-mix(in srgb, currentColor 10%, transparent));
       }
 
-      > slider {
+      >slider {
         background-color: $slider_hover_color;
       }
     }
@@ -71,20 +74,20 @@ scale {
   &:disabled {
     filter: Opacity(var(--disabled-opacity));
 
-    > trough > slider {
+    >trough>slider {
       box-shadow: 0 0 0 1px $_slider_border_color, 0 2px 4px transparent;
       outline-color: RGB(0 0 6 / #{if($contrast == 'high', 50%, 20%)});
     }
   }
 
-  > value {
+  >value {
     @extend .dimmed;
     @extend .numeric;
   }
 
   &.marks-before:not(.marks-after),
   &.marks-after:not(.marks-before) {
-    > trough > slider {
+    >trough>slider {
       transform: rotate(45deg);
 
       // Adjust box-shadow for the 45deg rotation, for 0px 2px we ideally want
@@ -98,10 +101,16 @@ scale {
   }
 
   &.horizontal {
-    > marks {
+    >marks {
       color: color-mix(in srgb, currentColor var(--dim-opacity), transparent);
-      &.top    { margin-bottom: $_marks_distance; }
-      &.bottom { margin-top: $_marks_distance; }
+
+      &.top {
+        margin-bottom: $_marks_distance;
+      }
+
+      &.bottom {
+        margin-top: $_marks_distance;
+      }
 
       indicator {
         background-color: currentColor;
@@ -111,35 +120,54 @@ scale {
     }
 
     &:not(.marks-before) {
-      > value.top { margin-bottom: $_marks_size; }
+      >value.top {
+        margin-bottom: $_marks_size;
+      }
     }
 
     &:not(.marks-after) {
-      > value.bottom { margin-top: $_marks_size; }
+      >value.bottom {
+        margin-top: $_marks_size;
+      }
     }
 
-    > value.left  { margin-right: 9px; }
-    > value.right { margin-left: 9px; }
+    >value.left {
+      margin-right: 9px;
+    }
+
+    >value.right {
+      margin-left: 9px;
+    }
 
     &.fine-tune {
-      > trough {
+      >trough {
         // to make the trough grow vertically in fine-tune mode
         margin: -3px 0px;
-        > slider { margin: -5px -8px; }
+
+        >slider {
+          margin: -5px -8px;
+        }
       }
 
-      > marks {
-        &.top { margin-top: 3px; }
-        &.bottom { margin-bottom: 3px; }
+      >marks {
+        &.top {
+          margin-top: 3px;
+        }
 
-        indicator { min-height: ($_marks_length - 3px); }
+        &.bottom {
+          margin-bottom: 3px;
+        }
+
+        indicator {
+          min-height: ($_marks_length - 3px);
+        }
       }
     }
 
     &.marks-before {
       padding-top: 0;
 
-       > trough > slider {
+      >trough>slider {
         border-top-left-radius: 0;
       }
     }
@@ -147,21 +175,27 @@ scale {
     &.marks-after {
       padding-bottom: 0;
 
-      > trough > slider {
+      >trough>slider {
         border-bottom-right-radius: 0;
       }
     }
 
-    &.marks-before.marks-after > trough > slider {
+    &.marks-before.marks-after>trough>slider {
       border-radius: 100%;
     }
   }
 
   &.vertical {
-    > marks {
+    >marks {
       color: color-mix(in srgb, currentColor var(--dim-opacity), transparent);
-      &.top    { margin-right: $_marks_distance; }
-      &.bottom { margin-left: $_marks_distance; }
+
+      &.top {
+        margin-right: $_marks_distance;
+      }
+
+      &.bottom {
+        margin-left: $_marks_distance;
+      }
 
       indicator {
         background-color: currentColor;
@@ -171,35 +205,54 @@ scale {
     }
 
     &:not(.marks-before) {
-      > value.left { margin-right: $_marks_size; }
+      >value.left {
+        margin-right: $_marks_size;
+      }
     }
 
     &:not(.marks-after) {
-      > value.right { margin-left: $_marks_size; }
+      >value.right {
+        margin-left: $_marks_size;
+      }
     }
 
-    > value.top    { margin-bottom: 9px; }
-    > value.bottom { margin-top: 9px; }
+    >value.top {
+      margin-bottom: 9px;
+    }
+
+    >value.bottom {
+      margin-top: 9px;
+    }
 
     &.fine-tune {
-      > trough {
+      >trough {
         // to make the trough grow horizontally in fine-tune mode
         margin: 0px -3px;
-        > slider { margin: -8px -5px; }
+
+        >slider {
+          margin: -8px -5px;
+        }
       }
 
-      > marks {
-        &.top { margin-left: 3px; }
-        &.bottom { margin-right: 3px; }
+      >marks {
+        &.top {
+          margin-left: 3px;
+        }
 
-        indicator { min-width: ($_marks_length - 3px); }
+        &.bottom {
+          margin-right: 3px;
+        }
+
+        indicator {
+          min-width: ($_marks_length - 3px);
+        }
       }
     }
 
     &.marks-before {
       padding-left: 0;
 
-      > trough > slider {
+      >trough>slider {
         border-bottom-left-radius: 0;
       }
     }
@@ -207,7 +260,7 @@ scale {
     &.marks-after {
       padding-right: 0;
 
-      > trough > slider {
+      >trough>slider {
         border-top-right-radius: 0;
       }
     }
@@ -216,12 +269,12 @@ scale {
   &.color {
     padding: 0;
 
-    > trough {
+    >trough {
       border: none;
       background: none;
       border-radius: 10px;
 
-      > slider {
+      >slider {
         margin: 0;
         background-color: RGB(255 255 255 / 80%);
       }
@@ -230,10 +283,9 @@ scale {
     &.fine-tune {
       padding: 2px;
 
-      > trough > slider {
+      >trough>slider {
         margin: -2px;
       }
     }
   }
 }
-

@@ -2,31 +2,33 @@ headerbar {
   min-height: 47px;
   background-color: var(--headerbar-bg-color);
   color: var(--headerbar-fg-color);
-  box-shadow: inset 0 -1px if($contrast == 'high', $headerbar_border_color, var(--headerbar-shade-color)),
-              inset  1px 0 $headerbar_border_color,
-              inset -1px 0 $headerbar_border_color;
+  box-shadow: inset 0 -1px if($contrast =='high', $headerbar_border_color, var(--headerbar-shade-color)),
+    inset 1px 0 $headerbar_border_color,
+    inset -1px 0 $headerbar_border_color;
 
   margin-left: -1px;
   margin-right: -1px;
 
   @extend %toolbar;
 
-  > windowhandle > box {
+  >windowhandle>box {
     padding: 6px 7px 7px 7px;
 
-    > box.start,
-    > box.end {
+    >box.start,
+    >box.end {
       border-spacing: 6px;
     }
 
-    &, > widget {
-      > box.start:dir(ltr),
-      > box.end:dir(rtl) {
+    &,
+    >widget {
+
+      >box.start:dir(ltr),
+      >box.end:dir(rtl) {
         margin-right: 6px;
       }
 
-      > box.start:dir(rtl),
-      > box.end:dir(ltr) {
+      >box.start:dir(rtl),
+      >box.end:dir(ltr) {
         margin-left: 6px;
       }
     }
@@ -36,7 +38,7 @@ headerbar {
     background-color: var(--headerbar-backdrop-color);
     transition: background-color $backdrop_transition;
 
-    > windowhandle {
+    >windowhandle {
       // opacity looks weird with GtkSwitch, but filter works fine
       filter: opacity(0.5);
 
@@ -47,51 +49,51 @@ headerbar {
   &.default-decoration {
     min-height: 37px;
 
-    > windowhandle > box {
+    >windowhandle>box {
       padding: 3px 4px 4px 4px;
     }
 
     windowcontrols {
-      > button {
+      >button {
         min-height: 22px;
         min-width: 22px;
         padding: 4px;
 
-        > image {
+        >image {
           padding: 3px;
         }
       }
 
-      > .icon {
+      >.icon {
         margin: 7px;
       }
     }
   }
 }
 
-window:not(.ssd-frame) > {
+window:not(.ssd-frame)> {
   .titlebar:not(.flat) {
-    box-shadow: 0 1px if($contrast == 'high', $border_color, color-mix(in srgb, var(--headerbar-shade-color) 50%, transparent)),
-                0 2px 4px color-mix(in srgb, var(--headerbar-shade-color) 50%, transparent);
+    box-shadow: 0 1px if($contrast =='high', $border_color, color-mix(in srgb, var(--headerbar-shade-color) 50%, transparent)),
+      0 2px 4px color-mix(in srgb, var(--headerbar-shade-color) 50%, transparent);
   }
 
   .titlebar headerbar:not(.flat) {
-    box-shadow: inset  1px 0 $headerbar_border_color,
-                inset -1px 0 $headerbar_border_color;
+    box-shadow: inset 1px 0 $headerbar_border_color,
+      inset -1px 0 $headerbar_border_color;
   }
 
   headerbar.titlebar,
   .titlebar headerbar {
     min-height: 46px;
 
-    > windowhandle > box {
+    >windowhandle>box {
       padding-bottom: 6px;
     }
 
     &.default-decoration {
       min-height: 36px;
 
-      > windowhandle > box {
+      >windowhandle>box {
         padding-bottom: 3px;
       }
     }
@@ -105,14 +107,14 @@ window:not(.ssd-frame) > {
 
   min-height: 46px;
 
-  > windowhandle > box {
+  >windowhandle>box {
     padding-bottom: 6px;
   }
 
   &.default-decoration {
     min-height: 36px;
 
-    > windowhandle > box {
+    >windowhandle>box {
       padding-bottom: 3px;
     }
   }
@@ -124,13 +126,13 @@ window:not(.ssd-frame) > {
   &:backdrop {
     transition: none;
 
-    > windowhandle {
+    >windowhandle {
       filter: none;
       transition: none;
     }
   }
 
-  window.devel & > windowhandle {
+  window.devel &>windowhandle {
     background-image: none;
   }
 }
@@ -138,7 +140,7 @@ window:not(.ssd-frame) > {
 %headerbar-shrunk {
   min-height: 40px;
 
-  > windowhandle > box {
+  >windowhandle>box {
     padding-top: 3px;
     padding-bottom: 3px;
   }
@@ -146,7 +148,7 @@ window:not(.ssd-frame) > {
   &.default-decoration {
     min-height: 30px;
 
-    > windowhandle > box {
+    >windowhandle>box {
       padding-top: 0px;
       padding-bottom: 0px;
     }
@@ -154,7 +156,9 @@ window:not(.ssd-frame) > {
 }
 
 .titlebar:not(headerbar) {
-  separator { background-color: $headerbar_border_color; }
+  separator {
+    background-color: $headerbar_border_color;
+  }
 }
 
 /*********************
@@ -164,30 +168,38 @@ window:not(.ssd-frame) > {
 windowcontrols {
   border-spacing: 3px;
 
-  > button {
+  >button {
     min-width: 24px;
     padding: 5px;
     box-shadow: none;
 
-    > image {
+    >image {
       background-color: $button_color;
       border-radius: 100%;
       padding: 4px;
       transition: $button_transition;
-      @if $contrast == 'high' {
+
+      @if $contrast =='high' {
         box-shadow: inset 0 0 0 1px $border_color;
       }
     }
 
-    &, &:hover, &:active {
+    &,
+    &:hover,
+    &:active {
       background: none;
     }
 
-    &:hover > image { background-color: $button_hover_color; }
-    &:active > image { background-color: $button_active_color; }
+    &:hover>image {
+      background-color: $button_hover_color;
+    }
+
+    &:active>image {
+      background-color: $button_active_color;
+    }
   }
 
-  > .icon {
+  >.icon {
     margin: 9px;
   }
 }
@@ -221,13 +233,13 @@ windowtitle {
 // Development versions of apps to use a differently styled headerbar
 
 window.devel {
-  headerbar > windowhandle {
+  headerbar>windowhandle {
     background-image: cross-fade(5% -gtk-recolor(url("assets/devel-symbolic.svg")),
-                                 image(transparent));
+        image(transparent));
     background-repeat: repeat-x;
   }
 
-  sheet headerbar > windowhandle {
+  sheet headerbar>windowhandle {
     background-image: unset;
     background-repeat: unset;
   }

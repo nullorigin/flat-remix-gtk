@@ -1,8 +1,11 @@
 // The following styles are deprecated in GTK and should be removed for GTK 5.x
 
 // .linked >                  element            child
-$deprecated_linked_widgets: ("combobox",         "> box > button.combo"),
-                            ("appchooserbutton", "> combobox > box > button.combo");
+$deprecated_linked_widgets: (
+  "combobox",
+  "> box > button.combo"),
+  ("appchooserbutton", "> combobox > box > button.combo"
+);
 
 /***********************
  * GtkAppChooserDialog *
@@ -13,11 +16,11 @@ window.appchooser:not(.ssd-frame) {
     @extend .flat;
     @extend %headerbar-shrunk;
 
-    > windowhandle {
+    >windowhandle {
       padding-top: 3px;
     }
 
-    box.start + box {
+    box.start+box {
       margin-top: -6px;
       margin-bottom: -6px;
       min-height: 12px;
@@ -34,7 +37,7 @@ window.appchooser:not(.ssd-frame) {
     @extend %searchbar-shrunk;
   }
 
-  .dialog-vbox > box > box:not(.dialog-action-area) {
+  .dialog-vbox>box>box:not(.dialog-action-area) {
     margin: 6px;
   }
 
@@ -56,11 +59,11 @@ window.assistant {
     &:not(separator) {
       &:dir(ltr) {
         border-right: none;
-        box-shadow: inset -1px 0 if($contrast == 'high', $border_color, var(--sidebar-border-color));
+        box-shadow: inset -1px 0 if($contrast =='high', $border_color, var(--sidebar-border-color));
       }
 
       &:dir(rtl) {
-        box-shadow: inset 1px 0 if($contrast == 'high', $border_color, var(--sidebar-border-color));
+        box-shadow: inset 1px 0 if($contrast =='high', $border_color, var(--sidebar-border-color));
       }
     }
 
@@ -69,14 +72,14 @@ window.assistant {
       transition: background-color $backdrop_transition;
     }
 
-    > label {
+    >label {
       padding: 6px 12px;
       border-radius: $menu_radius;
 
       &.highlight {
         background-color: $selected_color;
 
-        @if $contrast == 'high' {
+        @if $contrast =='high' {
           box-shadow: inset 0 0 0 1px $border_color;
         }
       }
@@ -115,7 +118,7 @@ iconview {
     background-color: color-mix(in srgb, var(--accent-bg-color) 0.0001%, var(--view-bg-color));
   }
 
-  @if $contrast == 'high' {
+  @if $contrast =='high' {
     &:selected {
       box-shadow: inset 0 0 0 1px $border_color;
     }
@@ -127,7 +130,7 @@ iconview {
     box-shadow: none;
   }
 
-  > dndtarget:drop(active) {
+  >dndtarget:drop(active) {
     border-style: solid;
     border-width: 1px;
     border-color: $drop_target_color;
@@ -139,36 +142,36 @@ iconview {
  **************/
 
 infobar {
-  > revealer > box {
+  >revealer>box {
     padding: 6px;
     padding-bottom: 7px;
     border-spacing: 6px;
-    box-shadow: inset 0 -1px if($contrast == 'high', $border_color, var(--shade-color));
+    box-shadow: inset 0 -1px if($contrast =='high', $border_color, var(--shade-color));
 
-    > box {
+    >box {
       border-spacing: 6px;
     }
   }
 
-  &.action:hover > revealer > box {
+  &.action:hover>revealer>box {
     background-image: image(color-mix(in srgb, currentColor 5%, transparent));
   }
 
-  &.action:active > revealer > box {
+  &.action:active>revealer>box {
     background-image: image(color-mix(in srgb, currentColor 10%, transparent));
   }
 
   @each $i_type, $i_color in (info, var(--accent-bg-color)),
-                             (question, var(--accent-bg-color)),
-                             (warning, var(--warning-bg-color)),
-                             (error, var(--error-bg-color)) {
-    &.#{$i_type} > revealer > box {
+  (question, var(--accent-bg-color)),
+  (warning, var(--warning-bg-color)),
+  (error, var(--error-bg-color)) {
+    &.#{$i_type}>revealer>box {
       background-color: color-mix(in srgb, $i_color 30%, var(--window-bg-color));
       color: var(--window-fg-color);
     }
   }
 
- .close {
+  .close {
     min-width: 18px;
     min-height: 18px;
     padding: 4px;
@@ -191,7 +194,7 @@ statusbar {
 
 // To be used for opaque elements overlaid atop the selected row
 $treeview_selection_opaque: color-mix(in srgb, currentColor 10%, var(--view-bg-color));
-$treeview_borders_opaque: color-mix(in srgb, currentColor if($contrast == 'high', 40%, 20%), var(--view-bg-color));
+$treeview_borders_opaque: color-mix(in srgb, currentColor if($contrast =='high', 40%, 20%), var(--view-bg-color));
 
 treeview.view {
   @extend columnview;
@@ -212,7 +215,9 @@ treeview.view {
   border-top-color: $treeview_borders_opaque; // while this is the grid lines color, better then nothing
 
   &:selected {
-    &:focus, & {
+
+    &:focus,
+    & {
       border-radius: 0;
     }
   }
@@ -228,35 +233,51 @@ treeview.view {
     min-height: 16px;
     -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
 
-    &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+    &:dir(rtl) {
+      -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl');
+    }
 
     color: color-mix(in srgb, currentColor 70%, transparent);
 
-    &:hover, &:active { color: currentColor; }
+    &:hover,
+    &:active {
+      color: currentColor;
+    }
 
-    &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+    &:checked {
+      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+    }
 
-    &:disabled { color: color-mix(in srgb, currentColor var(--disabled-opacity), transparent); }
+    &:disabled {
+      color: color-mix(in srgb, currentColor var(--disabled-opacity), transparent);
+    }
   }
 
-  > dndtarget:drop(active) {
+  >dndtarget:drop(active) {
     border-style: solid none;
     border-width: 1px;
     border-color: $drop_target_color;
 
-    &.after { border-top-style: none; }
+    &.after {
+      border-top-style: none;
+    }
 
-    &.before { border-bottom-style: none; }
+    &.before {
+      border-bottom-style: none;
+    }
   }
 
-  > header > button {
+  >header>button {
     padding-left: 4px;
     padding-right: 4px;
     border-bottom: 1px solid $border_color;
   }
 
-  &.progressbar { // progress bar in treeviews
-    &, &:selected {
+  &.progressbar {
+
+    // progress bar in treeviews
+    &,
+    &:selected {
       background-color: var(--accent-bg-color);
       color: var(--accent-fg-color);
     }
@@ -264,16 +285,17 @@ treeview.view {
     box-shadow: none;
   }
 
-  &.trough { // progress bar trough in treeviews
+  &.trough {
+    // progress bar trough in treeviews
     background-color: color-mix(in srgb, currentColor 10%, transparent);
   }
 
-  ~ undershoot.top {
+  ~undershoot.top {
     box-shadow: none;
     background: none;
   }
 
-  acceleditor > label {
+  acceleditor>label {
     // see tests/testaccel in GTK to test
     background-color: $treeview_selection_opaque;
   }
@@ -283,7 +305,9 @@ treeview.navigation-sidebar {
   padding: 0;
 
   &:selected {
-    &:focus, & {
+
+    &:focus,
+    & {
       background-color: $selected_color;
     }
   }
@@ -291,18 +315,24 @@ treeview.navigation-sidebar {
 
 treeview entry {
   &:focus-within {
-    &:dir(rtl), &:dir(ltr) { // specificity bump hack
+
+    &:dir(rtl),
+    &:dir(ltr) {
+      // specificity bump hack
       background-color: var(--view-bg-color);
       transition-property: color, background;
     }
   }
 
-  &.flat, & {
+  &.flat,
+  & {
     border-radius: 0;
     background-image: none;
     background-color: var(--view-bg-color);
 
-    &:focus-within { border-color: var(--accent-color); }
+    &:focus-within {
+      border-color: var(--accent-color);
+    }
   }
 }
 
@@ -311,7 +341,7 @@ treeview spinbutton:not(.vertical) {
   border-style: none;
   border-radius: 0;
 
-  > text {
+  >text {
     min-height: 0;
     padding: 1px 2px;
   }
@@ -327,6 +357,7 @@ list.content {
 // Deprecated: use .navigation-sidebar instead
 .sidebar {
   &:not(separator) {
+
     &:dir(ltr),
     &.left,
     &.left:dir(rtl) {
@@ -347,7 +378,17 @@ list.content {
     color: inherit;
   }
 
-  paned & { &.left, &.right, &.left:dir(rtl), &:dir(rtl), &:dir(ltr), & { border-style: none; }}
+  paned & {
+
+    &.left,
+    &.right,
+    &.left:dir(rtl),
+    &:dir(rtl),
+    &:dir(ltr),
+    & {
+      border-style: none;
+    }
+  }
 }
 
 // Deprecated: use .title-1
@@ -377,7 +418,9 @@ headerbar.flat {
   background-image: linear-gradient(to bottom, RGB(0 0 0 / 20%), transparent 2px);
   background-clip: padding-box;
 
-  border { border: none; }
+  border {
+    border: none;
+  }
 }
 
 // Deprecated: Use .dimmed

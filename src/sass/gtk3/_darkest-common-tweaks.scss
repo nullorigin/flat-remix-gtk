@@ -2,7 +2,9 @@
  * Entry *
  **********/
 %entry,
-entry { background: $base_color; }
+entry {
+  background: $base_color;
+}
 
 %slider,
 scale slider {
@@ -22,17 +24,17 @@ switch {
  *********************/
 decoration {
   box-shadow: 0 2px 8px 0 black,
-              0 0 0 1px $_wm_border;
+    0 0 0 1px $_wm_border;
 
   &:backdrop {
     box-shadow: 0 2px 8px 0 transparent,
-                0 0 5px 3px transparentize(black, .75),
-                0 0 0 1px $_wm_border;
+      0 0 5px 3px transparentize(black, .75),
+      0 0 0 1px $_wm_border;
   }
 
   .csd.popup & {
     box-shadow: 0 1px 6px black,
-                0 0 0 1px $_wm_border;
+      0 0 0 1px $_wm_border;
   }
 
   messagedialog.csd & {

@@ -1,5 +1,7 @@
 @keyframes spin {
-  to { transform: rotate(1turn); }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 spinner {
@@ -11,7 +13,9 @@ spinner {
     opacity: 1;
     animation: spin 1s linear infinite;
 
-    &:disabled { opacity: var(--disabled-opacity); }
+    &:disabled {
+      opacity: var(--disabled-opacity);
+    }
   }
 }
 

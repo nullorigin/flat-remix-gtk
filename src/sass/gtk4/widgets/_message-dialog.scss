@@ -8,7 +8,7 @@ window.dialog.message {
   background-color: var(--dialog-bg-color);
   color: var(--dialog-fg-color);
 
-  @if $contrast != 'high' {
+  @if $contrast !='high' {
     &.csd {
       outline: none;
     }
@@ -21,7 +21,7 @@ window.dialog.message {
   }
 
   box.dialog-vbox.vertical {
-    > box > box > box > label.title {
+    >box>box>box>label.title {
       @extend .title-2;
     }
   }
@@ -37,7 +37,7 @@ window.dialog.message {
       padding-top: 21px;
       border-spacing: 12px;
 
-      > button {
+      >button {
         min-height: 24px;
         padding: 10px 20px;
         border-radius: 12px;
@@ -51,16 +51,16 @@ window.dialog.message {
  ********************/
 
 window.messagedialog,
-dialog-host > dialog.alert sheet,
+dialog-host>dialog.alert sheet,
 window.dialog-window.alert {
   background-color: var(--dialog-bg-color);
   color: var(--dialog-fg-color);
 }
 
-dialog-host > dialog.alert sheet {
+dialog-host>dialog.alert sheet {
   border-radius: $alert_radius;
 
-  @if $contrast != 'high' {
+  @if $contrast !='high' {
     outline: none;
   }
 }
@@ -71,20 +71,20 @@ window.dialog-window.alert {
     border-radius: $alert_radius;
   }
 
-  @if $contrast != 'high' {
+  @if $contrast !='high' {
     &.csd {
       outline: none;
     }
   }
 }
 
-dialog-host > dialog.alert sheet,
+dialog-host>dialog.alert sheet,
 window.dialog-window.alert {
   .body-scrolled-window scrollbar.vertical {
     padding-top: 6px;
   }
 
-  .body-scrolled-window > viewport {
+  .body-scrolled-window>viewport {
     border-top-left-radius: $alert_radius;
     border-top-right-radius: $alert_radius;
   }
@@ -100,12 +100,14 @@ dialog.alert {
     &.has-heading.has-body {
       border-spacing: 10px;
 
-      > .child {
+      >.child {
         margin-top: 8px;
       }
     }
 
-    > .heading-bin, > .body, > .child {
+    >.heading-bin,
+    >.body,
+    >.child {
       padding-left: 24px;
       padding-right: 24px;
     }
@@ -116,7 +118,7 @@ dialog.alert {
     padding-top: 12px;
     border-spacing: 12px;
 
-    > button {
+    >button {
       min-height: 24px;
       min-width: 60px;
       padding: 10px 20px;
@@ -129,7 +131,9 @@ dialog.alert {
       padding-top: 24px;
       border-spacing: 18px;
 
-      > .heading-bin, > .body, > .child {
+      >.heading-bin,
+      >.body,
+      >.child {
         padding-left: 18px;
         padding-right: 18px;
       }
@@ -143,7 +147,7 @@ dialog.alert {
       padding: 18px;
       padding-top: 9px;
 
-      > button {
+      >button {
         min-width: 0;
         padding: 8px 16px;
       }

@@ -83,8 +83,7 @@ label {
  * Editable Labels *
  *******************/
 
-editablelabel > stack > text {
+editablelabel>stack>text {
   color: var(--view-fg-color);
   background-color: var(--view-bg-color);
 }
-

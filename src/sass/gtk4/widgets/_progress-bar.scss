@@ -1,20 +1,29 @@
 progressbar {
+
   // sizing
   &.horizontal {
-    > trough {
+    >trough {
       min-width: 150px;
-      &, > progress { min-height: 8px; }
+
+      &,
+      >progress {
+        min-height: 8px;
+      }
     }
   }
 
   &.vertical {
-    > trough {
+    >trough {
       min-height: 80px;
-      &, > progress { min-width: 8px; }
+
+      &,
+      >progress {
+        min-width: 8px;
+      }
     }
   }
 
-  > text {
+  >text {
     @extend .dimmed;
     @extend .numeric;
     font-size: smaller;
@@ -24,11 +33,12 @@ progressbar {
     filter: Opacity(var(--disabled-opacity));
   }
 
-  > trough {
+  >trough {
     @extend %scale_trough;
 
-    > progress {
-      @extend %scale_highlight; /* share most of scales' */
+    >progress {
+      @extend %scale_highlight;
+      /* share most of scales' */
 
       $_progress-radius: 99px;
 
@@ -61,26 +71,38 @@ progressbar {
     min-width: 2px;
     min-height: 2px;
 
-    > trough {
+    >trough {
       border-style: none;
       border-radius: 0;
       background-color: transparent;
       box-shadow: none;
 
-      > progress {
+      >progress {
         border-style: none;
         border-radius: 0;
       }
     }
 
     &.horizontal {
-      > trough, > trough > progress { min-height: 2px; }
+
+      >trough,
+      >trough>progress {
+        min-height: 2px;
+      }
     }
 
     &.vertical {
-      > trough, > trough > progress { min-width: 2px; }
+
+      >trough,
+      >trough>progress {
+        min-width: 2px;
+      }
     }
   }
 
-  > trough.empty > progress { all: unset; } // makes the progress indicator disappear, when the fraction is 0
+  >trough.empty>progress {
+    all: unset;
+  }
+
+  // makes the progress indicator disappear, when the fraction is 0
 }

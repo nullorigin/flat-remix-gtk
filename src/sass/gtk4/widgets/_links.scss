@@ -16,7 +16,9 @@ button.link {
     color: $link_color;
   }
 
-  &:disabled { color: color-mix(in srgb, currentColor var(--disabled-opacity), transparent); }
+  &:disabled {
+    color: color-mix(in srgb, currentColor var(--disabled-opacity), transparent);
+  }
 
   .osd & {
     color: $osd_link_color;
@@ -36,6 +38,7 @@ link {
 }
 
 button.link {
+
   &,
   &:hover,
   &:active,
@@ -43,8 +46,7 @@ button.link {
     background-color: transparent;
   }
 
-  > label {
+  >label {
     text-decoration: underline;
   }
 }
-

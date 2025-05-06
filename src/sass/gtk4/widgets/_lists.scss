@@ -1,6 +1,6 @@
 $row_transition: background-color 200ms $ease-out-quad,
-                 background-image 200ms $ease-out-quad,
-                 border-radius 200ms $ease-out-quad;
+  background-image 200ms $ease-out-quad,
+  border-radius 200ms $ease-out-quad;
 
 listview,
 list {
@@ -13,26 +13,31 @@ list {
     color: var(--view-fg-color);
   }
 
-  > row {
+  >row {
     padding: 2px;
     background-clip: padding-box;
   }
 
-  > row.expander { padding: 0px; }
-  > row.expander .row-header { padding: 2px; }
+  >row.expander {
+    padding: 0px;
+  }
+
+  >row.expander .row-header {
+    padding: 2px;
+  }
 
   &.horizontal row.separator,
-  &.separators.horizontal > row:not(.separator) {
+  &.separators.horizontal>row:not(.separator) {
     border-left: 1px solid $border_color;
   }
 
   &:not(.horizontal) row.separator,
-  &.separators:not(.horizontal) > row:not(.separator) {
+  &.separators:not(.horizontal)>row:not(.separator) {
     border-bottom: 1px solid $border_color;
   }
 }
 
-listview > header {
+listview>header {
   @extend .heading;
   padding: 2px;
   padding-top: 18px;
@@ -44,19 +49,31 @@ row {
 
   .osd & {
     &.activatable {
-      &:hover { background-color: $hover_color; }
+      &:hover {
+        background-color: $hover_color;
+      }
 
-      &:active { background-color: $active_color; }
+      &:active {
+        background-color: $active_color;
+      }
 
       // this is for indicathing which row generated a popover see https://bugzilla.gnome.org/show_bug.cgi?id=754411
-      &.has-open-popup { background-color: $hover_color; }
+      &.has-open-popup {
+        background-color: $hover_color;
+      }
 
       &:selected {
-        &:hover { background-color: $selected_hover_color; }
+        &:hover {
+          background-color: $selected_hover_color;
+        }
 
-        &:active { background-color: $selected_active_color; }
+        &:active {
+          background-color: $selected_active_color;
+        }
 
-        &.has-open-popup { background-color: $selected_hover_color; }
+        &.has-open-popup {
+          background-color: $selected_hover_color;
+        }
       }
     }
 
@@ -68,19 +85,31 @@ row {
   background-clip: padding-box;
 
   &.activatable {
-    &:hover { background-color: $view_hover_color; }
+    &:hover {
+      background-color: $view_hover_color;
+    }
 
-    &:active { background-color: $view_active_color; }
+    &:active {
+      background-color: $view_active_color;
+    }
 
     // this is for indicathing which row generated a popover see https://bugzilla.gnome.org/show_bug.cgi?id=754411
-    &.has-open-popup { background-color: $view_hover_color; }
+    &.has-open-popup {
+      background-color: $view_hover_color;
+    }
 
     &:selected {
-      &:hover { background-color: $view_selected_hover_color; }
+      &:hover {
+        background-color: $view_selected_hover_color;
+      }
 
-      &:active { background-color: $view_selected_active_color; }
+      &:active {
+        background-color: $view_selected_active_color;
+      }
 
-      &.has-open-popup { background-color: $view_selected_hover_color; }
+      &.has-open-popup {
+        background-color: $view_selected_hover_color;
+      }
     }
   }
 
@@ -95,17 +124,20 @@ row {
  * https://gitlab.gnome.org/GNOME/gtk/-/issues/3073    *
  *******************************************************/
 
-.rich-list { /* rich lists usually containing other widgets than just labels/text */
-  > row {
-    padding: 8px 12px;
-    min-height: 32px; /* should be tall even when only containing a label */
+.rich-list {
 
-    > box {
+  /* rich lists usually containing other widgets than just labels/text */
+  >row {
+    padding: 8px 12px;
+    min-height: 32px;
+    /* should be tall even when only containing a label */
+
+    >box {
       border-spacing: 12px;
     }
   }
 
-  > header {
+  >header {
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -121,17 +153,17 @@ row {
     @extend .dimmed;
   }
 
-  > box.header {
+  >box.header {
     margin-left: 12px;
     margin-right: 12px;
     border-spacing: 6px;
     min-height: 50px;
 
-    > .icon:disabled {
+    >.icon:disabled {
       filter: Opacity(var(--disabled-opacity));
     }
 
-    > box.title {
+    >box.title {
       margin-top: 6px;
       margin-bottom: 6px;
       border-spacing: 3px;
@@ -139,26 +171,31 @@ row {
 
       // Specificity bump for header bar
       &,
-      > .title,
-      > .subtitle {
+      >.title,
+      >.subtitle {
         padding: 0;
         font-weight: inherit;
       }
     }
 
-    > .prefixes,
-    > .suffixes {
+    >.prefixes,
+    >.suffixes {
       border-spacing: 6px;
 
-      > .suffixes {
+      >.suffixes {
         border-spacing: 6px;
       }
     }
 
-    > .icon,
-    > .prefixes {
-      &:dir(ltr) { margin-right: 6px; }
-      &:dir(rtl) { margin-left: 6px; }
+    >.icon,
+    >.prefixes {
+      &:dir(ltr) {
+        margin-right: 6px;
+      }
+
+      &:dir(rtl) {
+        margin-left: 6px;
+      }
     }
   }
 }
@@ -173,47 +210,67 @@ row.entry {
       opacity: var(--disabled-opacity);
     }
 
-    .dimmed, .dim-label, .subtitle {
+    .dimmed,
+    .dim-label,
+    .subtitle {
       opacity: 1;
     }
   }
 
-  > box.header {
+  >box.header {
     border-spacing: 0;
     margin-left: 6px;
     margin-right: 6px;
 
-    > .editable-area {
+    >.editable-area {
       padding: 0 6px;
 
-      > .edit-icon, > .indicator {
+      >.edit-icon,
+      >.indicator {
         min-width: 24px;
         min-height: 24px;
         padding: 5px;
       }
 
-      > .edit-icon, > .indicator, > .apply-button {
-        &:dir(ltr) { margin-left: 6px; }
-        &:dir(rtl) { margin-right: 6px; }
+      >.edit-icon,
+      >.indicator,
+      >.apply-button {
+        &:dir(ltr) {
+          margin-left: 6px;
+        }
+
+        &:dir(rtl) {
+          margin-right: 6px;
+        }
       }
 
-      > .edit-icon:disabled {
+      >.edit-icon:disabled {
         opacity: $strong_disabled_opacity;
       }
 
-      > .indicator {
+      >.indicator {
         opacity: $dimmer_opacity;
       }
     }
 
-    > .prefixes {
-      &:dir(ltr) { margin-left: 6px; }
-      &:dir(rtl) { margin-right: 6px; }
+    >.prefixes {
+      &:dir(ltr) {
+        margin-left: 6px;
+      }
+
+      &:dir(rtl) {
+        margin-right: 6px;
+      }
     }
 
-    > .suffixes {
-      &:dir(ltr) { margin-right: 6px; }
-      &:dir(rtl) { margin-left: 6px; }
+    >.suffixes {
+      &:dir(ltr) {
+        margin-right: 6px;
+      }
+
+      &:dir(rtl) {
+        margin-left: 6px;
+      }
     }
   }
 
@@ -234,13 +291,17 @@ row.spin {
     border-spacing: 6px;
     box-shadow: none;
 
-    &, &:focus {
+    &,
+    &:focus {
       outline: none;
     }
 
-    > button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):last-child,
-    > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) {
-      &, &:dir(ltr):last-child, &:dir(rtl):first-child {
+    >button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):last-child,
+    >button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) {
+
+      &,
+      &:dir(ltr):last-child,
+      &:dir(rtl):first-child {
         @extend %button_basic;
         @extend %circular_button;
         min-width: 30px;
@@ -252,9 +313,13 @@ row.spin {
   }
 
   &:disabled spinbutton {
-    > button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):last-child,
-    > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) {
-      &, &:dir(ltr):last-child, &:dir(rtl):first-child {
+
+    >button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):last-child,
+    >button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) {
+
+      &,
+      &:dir(ltr):last-child,
+      &:dir(rtl):first-child {
         &:disabled {
           filter: none;
         }
@@ -276,7 +341,9 @@ row.spin {
     &.#{$e_type} {
       color: var(--accent-color);
 
-      .dimmed, .dim-label, .subtitle {
+      .dimmed,
+      .dim-label,
+      .subtitle {
         opacity: 1;
       }
     }
@@ -298,19 +365,20 @@ row.combo {
     box-shadow: none;
     color: inherit;
 
-    &, &:disabled {
+    &,
+    &:disabled {
       background: none;
       color: inherit;
     }
   }
 
-  popover > contents {
+  popover>contents {
     min-width: 120px;
 
     .combo-searchbar {
       margin: 6px;
 
-      + scrolledwindow {
+      +scrolledwindow {
         @include undershoot(top);
       }
     }
@@ -334,7 +402,7 @@ row.combo {
 %boxed_list_row {
   @include focus-ring($offset: -1px, $transition: $row_transition);
 
-  border-bottom: 1px solid if($contrast == 'high', $border_color, var(--card-shade-color));
+  border-bottom: 1px solid if($contrast =='high', $border_color, var(--card-shade-color));
 
   &:not(:selected).activatable {
     &:hover {
@@ -357,7 +425,7 @@ row.expander {
   background: none;
   padding: 0px;
 
-  > box > list {
+  >box>list {
     background: none;
     color: inherit;
   }
@@ -367,7 +435,7 @@ row.expander {
     color: inherit;
   }
 
-  list.nested > row {
+  list.nested>row {
     @extend %boxed_list_row;
   }
 
@@ -411,14 +479,16 @@ row.expander {
  *****************/
 
 row.property {
-  &, &.expander > box > list > row.header {
-    > box.header > box.title {
-      > .title {
+
+  &,
+  &.expander>box>list>row.header {
+    >box.header>box.title {
+      >.title {
         font-size: smaller;
         @extend .dimmed;
       }
 
-      > .subtitle {
+      >.subtitle {
         font-size: inherit;
         opacity: 1;
       }
@@ -426,11 +496,13 @@ row.property {
   }
 
   &.monospace {
-    &, &.expander > box > list > row.header {
+
+    &,
+    &.expander>box>list>row.header {
       font-family: inherit;
       font-size: inherit;
 
-      > box.header > box.title > .subtitle {
+      >box.header>box.title>.subtitle {
         font-family: var(--monospace-font-family);
         font-size: var(--monospace-font-size);
       }
@@ -443,13 +515,13 @@ row.property {
  ***************/
 
 row.button {
-  > box {
+  >box {
     margin-left: 12px;
     margin-right: 12px;
     border-spacing: 6px;
     min-height: 40px;
 
-    > .icon:disabled {
+    >.icon:disabled {
       filter: Opacity(var(--disabled-opacity));
     }
   }
@@ -485,8 +557,8 @@ row.button {
     &:disabled {
       opacity: var(--disabled-opacity);
 
-      > box > .icon:disabled,
-      > box > label:disabled {
+      >box>.icon:disabled,
+      >box>label:disabled {
         filter: none;
       }
     }
@@ -507,9 +579,11 @@ row.button {
 list.boxed-list {
   @extend %card;
 
-  > row {
+  >row {
+
     // Regular rows and expander header rows background
-    &, &.expander row.header {
+    &,
+    &.expander row.header {
       @extend %boxed_list_row;
     }
 
@@ -519,7 +593,9 @@ list.boxed-list {
 
     // Rounded top
     &:first-child {
-      &, &.expander row.header {
+
+      &,
+      &.expander row.header {
         border-top-left-radius: $card_radius;
         border-top-right-radius: $card_radius;
       }
@@ -527,11 +603,12 @@ list.boxed-list {
 
     // Rounded bottom
     &:last-child {
+
       &,
       &.expander:not(:checked),
       &.expander:not(:checked) row.header,
       &.expander:checked list.nested,
-      &.expander:checked list.nested > row:last-child {
+      &.expander:checked list.nested>row:last-child {
         border-bottom-left-radius: $card_radius;
         border-bottom-right-radius: $card_radius;
         border-bottom-width: 0;
@@ -544,7 +621,7 @@ list.boxed-list-separate {
   background: none;
   color: var(--card-fg-color);
 
-  > row {
+  >row {
     @extend %card;
 
     &:selected {
@@ -580,7 +657,9 @@ list.boxed-list-separate {
       }
     }
 
-    &.entry, &.spin {
+    &.entry,
+    &.spin {
+
       &:not(:selected).activatable.focused:hover,
       &:not(:selected).activatable.focused:active {
         background-color: var(--card-bg-color);
@@ -597,7 +676,7 @@ list.boxed-list-separate {
 
       &:not(:checked) row.header,
       &.expander:checked list.nested,
-      &.expander:checked list.nested > row:last-child {
+      &.expander:checked list.nested>row:last-child {
         border-bottom-left-radius: $card_radius;
         border-bottom-right-radius: $card_radius;
         border-bottom: none;

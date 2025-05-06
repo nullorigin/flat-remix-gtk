@@ -9,7 +9,7 @@ frame,
 frame {
   border-radius: $card_radius;
 
-  > label {
+  >label {
     margin: 4px;
   }
 }
@@ -26,8 +26,13 @@ separator {
   &.spacer {
     background: none;
 
-    &.horizontal { min-width: 12px; }
-    &.vertical { min-height: 12px; }
+    &.horizontal {
+      min-width: 12px;
+    }
+
+    &.vertical {
+      min-height: 12px;
+    }
   }
 }
 
@@ -39,7 +44,7 @@ toast {
   background: $toast_bg_color;
   color: $toast_fg_color;
   box-shadow: 0 1px 3px 1px RGB(0 0 6 / 7%),
-              0 2px 6px 2px RGB(0 0 6 / 3%);
+    0 2px 6px 2px RGB(0 0 6 / 3%);
 
   --standalone-color-oklab: #{$standalone-color-oklab-dark};
 
@@ -56,14 +61,19 @@ toast {
   border-spacing: 6px;
   padding: 6px;
 
-  &:dir(ltr) { padding-left: 12px; }
-  &:dir(rtl) { padding-right: 12px; }
+  &:dir(ltr) {
+    padding-left: 12px;
+  }
 
-  > widget {
+  &:dir(rtl) {
+    padding-right: 12px;
+  }
+
+  >widget {
     margin: 0 6px;
   }
 
-  @if $contrast == 'high' {
+  @if $contrast =='high' {
     box-shadow: 0 0 0 1px $border_color;
   }
 }
@@ -87,11 +97,11 @@ video {
 window.about,
 dialog.about {
   .main-page {
-    > viewport > clamp > box {
+    >viewport>clamp>box {
       margin: 12px;
       border-spacing: 6px;
 
-      > box {
+      >box {
         margin-top: 18px;
         border-spacing: 18px;
         margin-bottom: 6px;
@@ -107,12 +117,12 @@ dialog.about {
   }
 
   .subpage {
-    > viewport > clamp > box {
+    >viewport>clamp>box {
       margin: 18px 12px;
       border-spacing: 18px;
     }
 
-    > clamp > textview {
+    >clamp>textview {
       background: none;
       color: inherit;
     }
@@ -124,14 +134,14 @@ dialog.about {
  *****************/
 
 statuspage {
-  > scrolledwindow > viewport > box {
+  >scrolledwindow>viewport>box {
     margin: 36px 12px;
     border-spacing: 36px;
 
-    > clamp > box {
+    >clamp>box {
       border-spacing: 12px;
 
-      > .icon {
+      >.icon {
         color: color-mix(in srgb, currentColor var(--dim-opacity), transparent);
         -gtk-icon-size: 128px;
 
@@ -144,18 +154,18 @@ statuspage {
         }
       }
 
-      > .title {
+      >.title {
         @extend .title-1;
       }
     }
   }
 
-  &.compact > scrolledwindow > viewport > box {
+  &.compact>scrolledwindow>viewport>box {
     margin: 24px 12px;
     border-spacing: 24px;
 
-    > clamp > box {
-      > .icon {
+    >clamp>box {
+      >.icon {
         -gtk-icon-size: 96px;
 
         &:not(:last-child) {
@@ -163,18 +173,18 @@ statuspage {
         }
       }
 
-      > .title {
+      >.title {
         @extend .title-2;
       }
     }
   }
 
-  &.spinner > scrolledwindow > viewport > box {
+  &.spinner>scrolledwindow>viewport>box {
     margin: 24px 12px;
     border-spacing: 24px;
 
-    > clamp > box {
-      > .icon {
+    >clamp>box {
+      >.icon {
         -gtk-icon-size: 64px;
 
         &:not(:last-child) {
@@ -182,7 +192,7 @@ statuspage {
         }
       }
 
-      > .title {
+      >.title {
         @extend .title-2;
       }
     }
@@ -196,17 +206,20 @@ statuspage {
     background-color: var(--card-bg-color);
     color: var(--card-fg-color);
     border-radius: $card_radius;
-    box-shadow: 0 0 0 1px if($contrast == 'high', $border_color, RGB(0 0 6 / 3%)),
-                0 1px 3px 1px RGB(0 0 6 / 7%),
-                0 2px 6px 2px RGB(0 0 6 / 3%);
+    box-shadow: 0 0 0 1px if($contrast =='high', $border_color, RGB(0 0 6 / 3%)),
+      0 1px 3px 1px RGB(0 0 6 / 7%),
+      0 2px 6px 2px RGB(0 0 6 / 3%);
 
-    .osd &, &.osd {
+    .osd &,
+    &.osd {
       background-color: color-mix(in srgb, currentColor 10%, transparent);
       color: $osd_fg_color;
 
-      @if $contrast == 'high' {
+      @if $contrast =='high' {
         box-shadow: 0 0 0 1px $border_color;
-      } @else {
+      }
+
+      @else {
         box-shadow: none;
       }
     }
