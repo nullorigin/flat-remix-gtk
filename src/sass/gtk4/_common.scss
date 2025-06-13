@@ -40,7 +40,7 @@ dnd {
 }
 
 image:disabled {
-  -gtk-icon-filter: opacity(0.5);
+  opacity: 0.5;
 }
 
 picture:disabled {
@@ -625,7 +625,7 @@ button {
 
     &:hover {
       @include button(hover);
-      -gtk-icon-filter: brightness(1.2);
+      filter: brightness(1.2);
     }
 
     &.keyboard-activating,
@@ -653,7 +653,7 @@ button {
         transition: $backdrop_transition;
 
         &:not(:disabled) {
-          -gtk-icon-filter: none;
+          filter: none;
         }
 
         &:active,
@@ -674,7 +674,7 @@ button {
 
     &:disabled {
       @include button(insensitive);
-      -gtk-icon-filter: opacity(0.5);
+      opacity: 0.5;
 
       &:active,
       &:checked {
@@ -1864,7 +1864,7 @@ headerbar {
     transition: $backdrop_transition;
 
     .title {
-      filter: opacity(.5);
+      opacity: 0.5;
     }
   }
 
@@ -4455,7 +4455,7 @@ filechooser {
     }
 
     & filethumbnail image {
-      filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
+      -gtk-icon-shadow: 1px 1px rgba(0, 0, 0, 0.3);
     }
   }
 }
@@ -4984,7 +4984,7 @@ colorchooser .popover.osd {
   background-color: darken($bg_color, 7%);
 
   &:hover {
-    -gtk-icon-filter: brightness(1.2);
+    background-color: lighten($bg_color, 12%);
   }
 
   .tile {
